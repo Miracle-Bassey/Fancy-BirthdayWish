@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Happy Birthday Beautiful ✨</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .birthday-card {
+            background: rgba(255, 255, 255, 1);
+            padding: 60px 40px;
+            border-radius: 30px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            transform: translateY(50px);
+            opacity: 0;
+            animation: slideUp 1s ease 0.5s forwards;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            transition: all 0.5s ease;
+        }
+
+        .birthday-card.hidden {
+            transform: translateY(-50px);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .crown {
+            font-size: 60px;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #e91e63, #9c27b0, #673ab7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .traits-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 40px 0;
+        }
+
+        .trait-bubble {
+            background: linear-gradient(45deg, #ff9a9e, #fecfef);
+            padding: 15px 20px;
+            border-radius: 25px;
+            color: #333;
+            font-weight: 500;
+            font-size: 0.9rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transform: scale(0);
+            animation: popIn 0.6s ease forwards;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trait-bubble::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .trait-bubble:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .trait-bubble:hover::before {
+            left: 100%;
+        }
+
+        .trait-bubble:nth-child(1) { animation-delay: 1s; }
+        .trait-bubble:nth-child(2) { animation-delay: 1.2s; }
+        .trait-bubble:nth-child(3) { animation-delay: 1.4s; }
+        .trait-bubble:nth-child(4) { animation-delay: 1.6s; }
+        .trait-bubble:nth-child(5) { animation-delay: 1.8s; }
+        .trait-bubble:nth-child(6) { animation-delay: 2s; }
+        .trait-bubble:nth-child(7) { animation-delay: 2.2s; }
+
+        @keyframes popIn {
+            to { transform: scale(1); }
+        }
+
+        .celebration-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 30px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .celebration-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        .celebration-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .message {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            font-weight: 400;
+            margin: 30px 0;
+            opacity: 0;
+            animation: fadeIn 1s ease 2.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 182, 193, 0.7);
+            font-size: 20px;
+            animation: floatUp 6s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .workout-quote {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+            margin: 20px 0;
+            font-style: italic;
+            font-weight: 500;
+            transform: translateX(-100px);
+            opacity: 0;
+            animation: slideInLeft 1s ease 3s forwards;
+        }
+
+        @keyframes slideInLeft {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Gallery Card Styles */
+        .gallery-card {
+            background: rgba(255, 255, 255, 1);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 35px 90px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            z-index: 15;
+        }
+
+        .gallery-card.active {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .gallery-header {
+            margin-bottom: 30px;
+        }
+
+        .gallery-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #e91e63, #9c27b0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gallery-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            font-weight: 300;
+        }
+
+        .photo-container {
+            position: relative;
+            margin: 30px 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: translateZ(0);
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .photo-placeholder {
+            color: #999;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .sweet-message {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            font-weight: 400;
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+            transform: translateZ(0);
+        }
+
+        .back-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.6);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 10;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        @media (max-width: 768px) {
+            .birthday-card, .gallery-card {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+
+            .main-title {
+                font-size: 2.5rem;
+            }
+
+            .gallery-title {
+                font-size: 2rem;
+            }
+
+            .traits-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="stars" id="stars"></div>
+<div class="floating-hearts" id="hearts"></div>
+<div class="overlay" id="overlay"></div>
+
+<div class="container">
+    <!-- Main Birthday Card -->
+    <div class="birthday-card" id="mainCard">
+        <div class="crown">👑</div>
+        <h1 class="main-title">Happy Birthday!</h1>
+        <p class="subtitle">To an absolutely amazing soul ✨</p>
+
+        <div class="traits-container">
+            <div class="trait-bubble" data-trait="lovely">💖 Lovely</div>
+            <div class="trait-bubble" data-trait="cool">✨ Cool</div>
+            <div class="trait-bubble" data-trait="girly">🌸 Girly</div>
+            <div class="trait-bubble" data-trait="strong">💪 Strong</div>
+            <div class="trait-bubble" data-trait="caring">🤗 Caring</div>
+            <div class="trait-bubble" data-trait="mature">🌟 Mature</div>
+            <div class="trait-bubble" data-trait="gift">🎁 Gift</div>
+        </div>
+
+        <div class="message">
+            You bring so much joy and positivity to everyone around you. Your strength in the gym matches the strength of your beautiful heart. Here's to another year of being fabulous, achieving your goals, and spreading your wonderful energy wherever you go! 💝
+        </div>
+
+        <div class="workout-quote">
+            "Strong women lift each other up - and you lift everyone around you!" 💪✨
+        </div>
+
+        <button class="celebration-btn" onclick="celebrate()">
+            🎉 Start the Celebration! 🎉
+        </button>
+    </div>
+
+    <!-- Gallery Cards -->
+    <div class="gallery-card" id="lovely-card">
+        <div class="gallery-header">
+            <h2 class="gallery-title">💖 Lovely</h2>
+            <p class="gallery-subtitle">Your beauty radiates from within</p>
+        </div>
+        <div class="photo-container">
+            <img src="IMG_7092.PNG" alt="Lovely moment" onerror="this.parentNode.innerHTML='<div class=\'photo-placeholder\'>💖 Your lovely photo will be here 💖</div>'">
+        </div>
+        <div class="sweet-message">
+            Your lovely spirit lights up every room you enter. The way you carry yourself with such grace and kindness makes everyone around you feel special. You have this magical ability to make ordinary moments feel extraordinary just by being yourself. 🌸✨
+        </div>
+        <button class="back-btn" onclick="goBack()">← Back to Card</button>
+    </div>
+
+    <div class="gallery-card" id="cool-card">
+        <div class="gallery-header">
+            <h2 class="gallery-title">✨ Cool</h2>
+            <p class="gallery-subtitle">Effortlessly amazing in every way</p>
+        </div>
+        <div class="photo-container">
+            <img src="IMG_7096.PNG" alt="Cool moment" onerror="this.parentNode.innerHTML='<div class=\'photo-placeholder\'>✨ Your cool photo will be here ✨</div>'">
+        </div>
+        <div class="sweet-message">
+            You have this incredible coolness that's not about trying to impress anyone - it's just who you are. Your confidence is magnetic, your style is effortless, and your vibe is absolutely unmatched. You make being awesome look so easy! 😎🔥
+        </div>
+        <button class="back-btn" onclick="goBack()">← Back to Card</button>
+    </div>
+
+    <div class="gallery-card" id="girly-card">
+        <div class="gallery-header">
+            <h2 class="gallery-title">🌸 Girly</h2>
+            <p class="gallery-subtitle">Embracing femininity with strength</p>
+        </div>
+        <div class="photo-container">
+            <img src="IMG_7097.PNG" alt="Girly moment" onerror="this.parentNode.innerHTML='<div class=\'photo-placeholder\'>🌸 Your girly photo will be here 🌸</div>'">
+        </div>
+        <div class="sweet-message">
+            You perfectly balance strength and femininity in the most beautiful way. Whether you're crushing it at the gym or looking absolutely stunning in your favorite outfit, you show that being girly and being powerful go hand in hand. You're redefining what it means to be feminine and fierce! 💅💪
+        </div>
+        <button class="back-btn" onclick="goBack()">← Back to Card</button>
+    </div>
+
+    <div class="gallery-card" id="strong-card">
+        <div class="gallery-header">
+            <h2 class="gallery-title">💪 Strong</h2>
+            <p class="gallery-subtitle">Powerful in body, mind, and spirit</p>
+        </div>
+        <div class="photo-container">
+            <img src="IMG_7098.PNG" alt="Strong moment" onerror="this.parentNode.innerHTML='<div class=\'photo-placeholder\'>💪 Your strong photo will be here 💪</div>'">
+        </div>
+        <div class="sweet-message">
+            Your strength goes far beyond what you can lift at the gym. You have this incredible inner strength that helps you overcome challenges and inspire others. You're proof that strong women don't just exist - they thrive, they lead, and they change the world around them! 🌟💯
+        </div>
+        <button class="back-btn" onclick="goBack()">← Back to Card</button>
+    </div>
+
+    <div class="gallery-card" id="caring-card">
+        <div class="gallery-header">
+            <h2 class="gallery-title">🤗 Caring</h2>
+            <p class="gallery-subtitle">A heart that holds the world</p>
+        </div>
+        <div class="photo-container">
+            <img src="IMG_7100.PNG" alt="Caring moment" onerror="this.parentNode.innerHTML='<div class=\'photo-placeholder\'>🤗 Your caring photo will be here 🤗</div>'">
+        </div>
+        <div class="sweet-message">
+            Your caring nature is like a warm hug for everyone's soul. You have this beautiful gift of making people feel seen, heard, and loved. The way you check in on friends, remember the little things, and offer support without being asked shows what an incredibly caring person you are. The world needs more hearts like yours! 💕🌈
+        </div>
+        <button class="back-btn" onclick="goBack()">← Back to Card</button>
+    </div>
+
+    <div class="gallery-card" id="mature-card">
+        <div class="gallery-header">
+            <h2 class="gallery-title">🌟 Mature</h2>
+            <p class="gallery-subtitle">Wisdom beyond your years</p>
+        </div>
+        <div class="photo-container">
+            <img src="IMG_7102.PNG" alt="Mature moment" onerror="this.parentNode.innerHTML='<div class=\'photo-placeholder\'>🌟 Your mature photo will be here 🌟</div>'">
+        </div>
+        <div class="sweet-message">
+            Your maturity shines through in how you handle life's ups and downs with such grace. You have this wonderful ability to see the bigger picture, make thoughtful decisions, and offer wise advice to those around you. Your emotional intelligence and levelheadedness make you someone people naturally turn to for guidance. You're wise beyond your years! 🦋✨
+        </div>
+        <button class="back-btn" onclick="goBack()">← Back to Card</button>
+    </div>
+
+    <div class="gallery-card" id="gift-card">
+        <div class="gallery-header">
+            <h2 class="gallery-title">🎁 Gift</h2>
+            <p class="gallery-subtitle">A special surprise just for you!</p>
+        </div>
+        <div class="photo-container">
+            <img src="Logo.png" alt="Gift moment" onerror="this.parentNode.innerHTML='<div class=\'photo-placeholder\'>🎁 Your gift photo will be here 🎁</div>'">
+        </div>
+        <div class="sweet-message">
+            ✨ A Special Gift For You! ✨<br><br>
+            Now here's my gift to you - something I believe will be incredibly valuable for your upcoming business journey! 💼✨<br><br>
+            📊 Remember, smart women track their finances and document their brands! That's how you prepare to be scalable and truly know your numbers - not just guess them! 💪📈<br><br>
+            This is your foundation for building something amazing. You've got the drive, the vision, and now you'll have the tools! 🚀💎<br><br>
+            🎯 Click Here to View Your Gift! 🎯
+
+        </div>
+        <button class="back-btn" onclick="goBack()">← Back to Card</button>
+    </div>
+</div>
+
+<script>
+    // Photo mapping for each trait
+    const photoMap = {
+        'lovely': 'IMG_7092.PNG',
+        'cool': 'IMG_7096.PNG',
+        'girly': 'IMG_7097.PNG',
+        'strong': 'IMG_7098.PNG',
+        'caring': 'IMG_7100.PNG',
+        'mature': 'IMG_7102.PNG',
+        'gift': 'Logo'
+    };
+
+    // Create twinkling stars
+    function createStars() {
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.width = Math.random() * 3 + 1 + 'px';
+            star.style.height = star.style.width;
+            star.style.animationDelay = Math.random() * 2 + 's';
+            starsContainer.appendChild(star);
+        }
+    }
+
+    // Create floating hearts
+    function createFloatingHearts() {
+        const heartsContainer = document.getElementById('hearts');
+
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '💖';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            heartsContainer.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }, 2000);
+    }
+
+    // Handle trait bubble clicks
+    document.querySelectorAll('.trait-bubble').forEach(bubble => {
+        bubble.addEventListener('click', function() {
+            const trait = this.getAttribute('data-trait');
+            showGalleryCard(trait);
+        });
+    });
+
+    // Show gallery card
+    function showGalleryCard(trait) {
+        const mainCard = document.getElementById('mainCard');
+        const galleryCard = document.getElementById(trait + '-card');
+        const overlay = document.getElementById('overlay');
+
+        // Hide main card
+        mainCard.classList.add('hidden');
+
+        // Show overlay and gallery card
+        overlay.classList.add('active');
+        galleryCard.classList.add('active');
+
+        // Add sparkle effect
+        createSparkles();
+    }
+
+    // Go back to main card
+    function goBack() {
+        const mainCard = document.getElementById('mainCard');
+        const overlay = document.getElementById('overlay');
+        const galleryCards = document.querySelectorAll('.gallery-card');
+
+        // Hide overlay and all gallery cards
+        overlay.classList.remove('active');
+        galleryCards.forEach(card => {
+            card.classList.remove('active');
+        });
+
+        // Show main card
+        setTimeout(() => {
+            mainCard.classList.remove('hidden');
+        }, 200);
+    }
+
+    // Create sparkles effect
+    function createSparkles() {
+        for (let i = 0; i < 15; i++) {
+            setTimeout(() => {
+                const sparkle = document.createElement('div');
+                sparkle.innerHTML = '✨';
+                sparkle.style.position = 'fixed';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.fontSize = Math.random() * 10 + 15 + 'px';
+                sparkle.style.pointerEvents = 'none';
+                sparkle.style.zIndex = '1000';
+                sparkle.style.animation = 'twinkle 1.5s ease-in-out';
+                sparkle.style.color = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#dda0dd'][Math.floor(Math.random() * 6)];
+                document.body.appendChild(sparkle);
+
+                setTimeout(() => sparkle.remove(), 1500);
+            }, i * 100);
+        }
+    }
+
+    // Celebration function
+    function celebrate() {
+        // Create confetti
+        createConfetti();
+
+        // Play celebration sound (visual feedback)
+        const button = document.querySelector('.celebration-btn');
+        button.innerHTML = '🎊 Amazing! 🎊';
+        button.style.background = 'linear-gradient(45deg, #ff6b6b, #ff8e8e)';
+
+        // Add more floating hearts
+        for (let i = 0; i < 20; i++) {
+            setTimeout(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = ['💖', '💕', '💝', '🌸', '✨'][Math.floor(Math.random() * 5)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.fontSize = Math.random() * 10 + 15 + 'px';
+                heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                document.getElementById('hearts').appendChild(heart);
+
+                setTimeout(() => heart.remove(), 5000);
+            }, i * 100);
+        }
+
+        // Reset button after 3 seconds
+        setTimeout(() => {
+            button.innerHTML = '🎉 Celebrate Again! 🎉';
+            button.style.background = 'linear-gradient(45deg, #667eea, #764ba2)';
+        }, 3000);
+    }
+
+    function createConfetti() {
+        const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#dda0dd', '#98d8c8'];
+
+        for (let i = 0; i < 150; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti-piece';
+            confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.left = Math.random() * 100 + '%';
+            confetti.style.top = '-10px';
+            confetti.style.width = Math.random() * 8 + 4 + 'px';
+            confetti.style.height = confetti.style.width;
+            confetti.style.position = 'fixed';
+            confetti.style.borderRadius = '50%';
+            confetti.style.pointerEvents = 'none';
+            confetti.style.zIndex = '1000';
+
+            document.body.appendChild(confetti);
+
+            // Animate confetti falling
+            const fallDuration = Math.random() * 3000 + 2000;
+            const fallDistance = window.innerHeight + 100;
+            const rotation = Math.random() * 360;
+
+            confetti.animate([
+                { transform: `translateY(0) rotate(0deg)`, opacity: 1 },
+                { transform: `translateY(${fallDistance}px) rotate(${rotation}deg)`, opacity: 0 }
+            ], {
+                duration: fallDuration,
+                easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+            });
+
+            setTimeout(() => confetti.remove(), fallDuration);
+        }
+    }
+
+    // Close gallery when clicking overlay
+    document.getElementById('overlay').addEventListener('click', goBack);
+
+    // Initialize
+    createStars();
+    createFloatingHearts();
+
+    // Add some initial celebration after page loads
+    setTimeout(() => {
+        createSparkles();
+    }, 4000);
+</script>
+</body>
+</html>
